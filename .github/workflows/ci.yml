@@ -11,7 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
-      - name: Build
+      - name: Build construo
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: assemble
+          build-root-directory: construo
+      - name: Build test project
         uses: gradle/gradle-build-action@v2
         with:
           arguments: assemble
@@ -20,7 +25,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/setup
-      - name: Check code formatting
+      - name: Check code formatting construo
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: spotlessCheck
+          build-root-directory: construo
+      - name: Check code formatting test project
         uses: gradle/gradle-build-action@v2
         with:
           arguments: spotlessCheck
